@@ -1,0 +1,193 @@
+:root {
+	--color-bg: #f4f6fb;
+	--color-card: #ffffff;
+	--color-border: #e1e7ef;
+	--color-accent: #2563eb;
+	--color-accent-dark: #1d4ed8;
+	--color-text: #0f172a;
+	--color-muted: #64748b;
+	--color-success: #16a34a;
+	--color-error: #dc2626;
+	--shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.08);
+	font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: radial-gradient(circle at top right, #dbeafe, #f4f6fb 40%);
+	color: var(--color-text);
+	font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.registration-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3rem 1rem;
+    background-image: url('/assets/images/bg.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card {
+	width: min(960px, 100%);
+	background: var(--color-card);
+	border-radius: 12px;
+	box-shadow: var(--shadow-lg);
+	border: 1px solid var(--color-border);
+	padding: 3rem;
+}
+
+.card__header h1 {
+	margin: 0.25rem 0 0.5rem;
+	font-size: clamp(1.75rem, 2vw, 2.25rem);
+}
+
+.card__header .eyebrow {
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--color-accent);
+	font-size: 0.75rem;
+}
+
+.card__header .subtitle {
+	margin: 0;
+	color: var(--color-muted);
+	line-height: 1.5;
+}
+
+.alert {
+	border-radius: 12px;
+	padding: 1rem 1.25rem;
+	margin: 1.5rem 0;
+	border: 1px solid;
+	font-size: 0.95rem;
+}
+
+.alert--success {
+	border-color: rgba(22, 163, 74, 0.2);
+	background: rgba(22, 163, 74, 0.08);
+	color: var(--color-success);
+}
+
+.alert--error {
+	border-color: rgba(220, 38, 38, 0.2);
+	background: rgba(220, 38, 38, 0.08);
+	color: var(--color-error);
+}
+
+.alert ul {
+	margin: 0.5rem 0 0 1rem;
+	padding: 0;
+}
+
+.form {
+	margin-top: 2rem;
+}
+
+.form__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1.5rem;
+}
+
+.form__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	font-size: 0.95rem;
+	color: var(--color-muted);
+}
+
+.form__field input,
+.form__field select {
+	border: 1px solid var(--color-border);
+	border-radius: 12px;
+	padding: 0.85rem 1rem;
+	font-size: 1rem;
+	font-family: inherit;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form__field input:focus,
+.form__field select:focus {
+	outline: none;
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.form__actions {
+	margin-top: 2rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.btn {
+	border: none;
+	border-radius: 8px;
+	padding: 0.9rem 2.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.btn--primary {
+	background: var(--color-accent);
+	color: #fff;
+	box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.btn--primary:not(:disabled):hover {
+	background: var(--color-accent-dark);
+	transform: translateY(-1px);
+}
+
+.form__helper {
+	margin: 0;
+	color: var(--color-muted);
+}
+
+.form__helper a {
+	color: var(--color-accent);
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.form__helper a:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	.card {
+		padding: 2rem;
+	}
+}
+
+@media (max-width: 520px) {
+	.registration-page {
+		padding: 2rem 1rem;
+	}
+
+	.card {
+		padding: 1.5rem;
+	}
+
+	.form__grid {
+		grid-template-columns: 1fr;
+	}
+}
