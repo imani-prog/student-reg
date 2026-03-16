@@ -21,6 +21,8 @@ $genderOptions = [
     'female' => 'Female',
     'other' => 'Other',
 ];
+$currentYear = (int) date('Y');
+$maxAcademicYear = $currentYear + 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +33,7 @@ $genderOptions = [
     <title>Student Registration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/register.css">
 </head>
 
@@ -113,8 +113,8 @@ $genderOptions = [
 
                     <label class="form__field">
                         <span>Email Address *</span>
-                        <input type="email" name="email" required
-                            value="<?= htmlspecialchars($old['email'] ?? '') ?>" placeholder="student@mksu.ac.ke">
+                        <input type="email" name="email" required value="<?= htmlspecialchars($old['email'] ?? '') ?>"
+                            placeholder="student@mksu.ac.ke">
                     </label>
 
                     <label class="form__field">
@@ -134,26 +134,33 @@ $genderOptions = [
                         <select name="course_id" required <?= empty($courses) ? 'disabled' : '' ?>>
                             <option value="">Select course</option>
                             <?php foreach ($courses as $course) : ?>
-                                <option value="<?= $course['id'] ?>" <?= ($old['course_id'] ?? '') == $course['id'] ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($course['course_code'] . ' — ' . $course['course_name']) ?></option>
+                                <option value="<?= $course['id'] ?>"
+                                    <?= ($old['course_id'] ?? '') == $course['id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($course['course_code'] . ' — ' . $course['course_name']) ?>
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </label>
 
                     <label class="form__field">
-                        <span>Year of Study *</span>
-                        <input type="number" name="year_of_study" min="1" max="7" required
+                        <span>Year of Study (YYYY) *</span>
+                        <input type="text" name="year_of_study" pattern="\d{4}" inputmode="numeric" maxlength="4"
+                            placeholder="<?= $currentYear ?>" required
                             value="<?= htmlspecialchars($old['year_of_study'] ?? '') ?>">
+                        <small class="form__hint">Enter a 4-digit academic year between 2000 and
+                            <?= $maxAcademicYear ?>.</small>
                     </label>
 
                     <label class="form__field">
                         <span>Password *</span>
-                        <input type="password" name="password" minlength="8" required placeholder="Create a strong password">
+                        <input type="password" name="password" minlength="8" required
+                            placeholder="Create a strong password">
                     </label>
 
                     <label class="form__field">
                         <span>Confirm Password *</span>
-                        <input type="password" name="password_confirmation" minlength="8" required placeholder="Repeat your password">
+                        <input type="password" name="password_confirmation" minlength="8" required
+                            placeholder="Repeat your password">
                     </label>
                 </div>
 

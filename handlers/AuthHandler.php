@@ -59,7 +59,7 @@ class AuthHandler
                 'phone_number' => $input['phone_number'],
                 'date_of_birth' => $input['date_of_birth'],
                 'course_id' => $input['course_id'],
-                'year_of_study' => $input['year_of_study'],
+                'year_of_study' => (int) $input['year_of_study'],
             ]);
 
             if ($studentId > 0) {
@@ -89,7 +89,7 @@ class AuthHandler
             'phone_number' => $this->normalizePhone($data['phone_number'] ?? ''),
             'date_of_birth' => trim($data['date_of_birth'] ?? ''),
             'course_id' => isset($data['course_id']) ? (int) $data['course_id'] : null,
-            'year_of_study' => isset($data['year_of_study']) ? (int) $data['year_of_study'] : null,
+            'year_of_study' => trim($data['year_of_study'] ?? ''),
             'password' => $data['password'] ?? '',
             'password_confirmation' => $data['password_confirmation'] ?? '',
         ];
@@ -133,7 +133,8 @@ class AuthHandler
         } else {
             $dob = DateTime::createFromFormat('Y-m-d', $input['date_of_birth']);
             $dobErrors = DateTime::getLastErrors();
-            if (!$dob || $dobErrors['warning_count'] > 0 || $dobErrors['error_count'] > 0) {
+            $hasDobErrors = is_array($dobErrors) && ($dobErrors['warning_count'] > 0 || $dobErrors['error_count'] > 0);
+            if (!$dob || $hasDobErrors) {
                 $errors[] = 'Provide a valid date of birth.';
             } elseif ($dob > new DateTime('now')) {
                 $errors[] = 'Date of birth cannot be in the future.';
@@ -144,8 +145,15 @@ class AuthHandler
             $errors[] = 'Select a valid course.';
         }
 
-        if (empty($input['year_of_study']) || $input['year_of_study'] < 1 || $input['year_of_study'] > 8) {
-            $errors[] = 'Year of study must be between 1 and 8.';
+        $yearValue = $input['year_of_study'];
+        if ($yearValue === '' || !preg_match('/^\d{4}$/', $yearValue)) {
+            $errors[] = 'Year of study must be a 4-digit year (e.g., 2024).';
+        } else {
+            $yearInt = (int) $yearValue;
+            $currentYear = (int) date('Y') + 1;
+            if ($yearInt < 2000 || $yearInt > $currentYear) {
+                $errors[] = 'Year of study must be between 2000 and ' . $currentYear . '.';
+            }
         }
 
         if (strlen($input['password']) < 8) {

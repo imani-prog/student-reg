@@ -54,19 +54,19 @@ class User
 			date_of_birth,
 			course_id,
 			year_of_study
-		) VALUES (
-			:admission_number,
-			:first_name,
-			:middle_name,
-			:last_name,
-			:gender,
-			:email,
-			:default_passwrord,
-			:phone_number,
-			:date_of_birth,
-			:course_id,
-			:year_of_study
-		)';
+        ) VALUES (
+            :admission_number,
+            :first_name,
+            :middle_name,
+            :last_name,
+            :gender,
+            :email,
+            :default_password,
+            :phone_number,
+            :date_of_birth,
+            :course_id,
+            :year_of_study
+        )';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
