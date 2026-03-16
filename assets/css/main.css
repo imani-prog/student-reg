@@ -1,24 +1,23 @@
-
 @font-face{
     font-family: 'Agros';
-    src: url('/assets/fonts/Argos/argos.ttf') format('ttf');
+    src: url('/assets/fonts/Argos/argos.ttf') format('truetype');
 }
 
 @font-face{
     font-family: 'Barlow';
-    src: url('/assets/fonts/Barlow/Barlow-Regular.ttf') format('ttf');
+    src: url('/assets/fonts/Barlow/Barlow-Regular.ttf') format('truetype');
 }
 
 :root {
-    --color-bg: #0f172a;
-    --color-card: rgba(15, 23, 42, 0.75);
-    --color-text: #e2e8f0;
-    --color-muted: #94a3b8;
-    --color-primary: #2a2c86;
-    --color-primary-dark: #1c1d85;
-    --color-border: rgba(148, 163, 184, 0.2);
-    --shadow-hero: 0 25px 80px rgba(15, 23, 42, 0.35);
-    font-family: 'Agros','Barlow', sans-serif;
+    --color-bg: #f8fafc;
+    --color-card: rgba(255, 255, 255, 0.85);
+    --color-text: #0f172a;
+    --color-muted: #475569;
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-border: rgba(100, 116, 139, 0.25);
+    --shadow-hero: 0 25px 80px rgba(0, 0, 0, 0.06);
+    font-family: 'Agros', 'Barlow', sans-serif;
 }
 
 * {
@@ -28,9 +27,9 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: radial-gradient(circle at 20% 20%, #1d3b64, #0b1220 65%);
+    background: radial-gradient(circle at 20% 20%, #eef2f6, #d9e0e8 65%);
     color: var(--color-text);
-   font-family: 'Agros','Barlow', sans-serif;
+    font-family: 'Agros', 'Barlow', sans-serif;
 }
 
 .main-section {
@@ -59,15 +58,17 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.35em;
     font-size: 0.75rem;
-    color: white;
+    color: var(--color-primary);
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .hero-card h1 {
     font-size: clamp(2rem, 4vw, 3rem);
-    text-align:center;
+    text-align: center;
     margin: 0 0 1rem;
     line-height: 1.2;
+    color: #0b1a2e;
 }
 
 .hero__copy {
@@ -94,29 +95,33 @@ body {
     align-items: center;
     justify-content: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border: none;
 }
 
 .btn--primary {
     background: var(--color-primary);
-    color: #fff;
-    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
+    color: white;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
 }
 
 .btn--primary:hover {
     transform: translateY(-2px);
     background: var(--color-primary-dark);
+    box-shadow: 0 16px 35px rgba(37, 99, 235, 0.3);
 }
 
 .btn--secondary {
     background: transparent;
-    color: #fff;
+    color: var(--color-text);
     border: 1px solid var(--color-border);
 }
 
 .btn--secondary:hover {
     transform: translateY(-2px);
     border-color: var(--color-primary);
-    color: white;
+    background: rgba(37, 99, 235, 0.04);
+    color: var(--color-primary-dark);
 }
 
 .hero__meta {
@@ -130,12 +135,14 @@ body {
     padding: 1.25rem;
     border-radius: 8px;
     border: 1px solid var(--color-border);
-    background: rgba(15, 23, 42, 0.55);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(4px);
 }
 
 .hero__meta h3 {
     margin: 0 0 0.4rem;
     font-size: 1.05rem;
+    color: #1e293b;
 }
 
 .hero__meta p {
@@ -154,4 +161,3 @@ body {
         width: 100%;
     }
 }
-

@@ -34,6 +34,12 @@ Then open <http://localhost:8000/register> in your browser.
 3. Submit the form; successful registrations display a green confirmation banner.
 4. The record is persisted in the `students` table with the hashed password stored in `default_password`.
 
+## Login + dashboard
+
+1. Visit `/login` and enter your admission number (e.g. `MKSU/COM/001/2024`) or student email, plus the password you set.
+2. After a successful login you’ll be redirected to `/student/dashboard.php`, which shows a summary card with your bio, contact info, course, and year of study.
+3. Use the “Logout” button on the card header to clear the session and return to the login screen.
+
 ## Troubleshooting tips
 
 - If you see "Unable to load courses", confirm you ran the course seed query and that the DB credentials are correct.

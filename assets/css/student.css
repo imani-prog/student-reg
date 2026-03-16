@@ -1,0 +1,148 @@
+@font-face{
+    font-family: 'Agros';
+    src: url('/assets/fonts/Argos/argos.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Barlow';
+    src: url('/assets/fonts/Barlow/Barlow-Regular.ttf') format('truetype');
+}
+
+
+:root {
+    --color-bg: radial-gradient(circle at 25% 25%, #f0f4fa, #e6ecf5);
+    --color-card: rgba(255, 255, 255, 0.9);
+    --color-border: rgba(37, 99, 235, 0.2);
+    --color-text: #0f172a;
+    --color-muted: #475569;
+    --color-label: #2a2b87;
+    --color-ghost: rgba(15, 23, 42, 0.05);
+    --color-ghost-border: rgba(100, 116, 139, 0.3);
+    font-family: 'Agros', 'Barlow', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-bg);
+    color: var(--color-text);
+   font-family: 'Agros', 'Barlow', sans-serif;
+}
+
+.dashboard {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    background-image: url('/assets/images/bg.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card {
+    width: min(960px, 100%);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    box-shadow: 0 45px 120px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(18px);
+}
+
+.card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    font-size: 0.75rem;
+    color: var(--color-label);
+    margin: 0 0 0.5rem;
+}
+
+.card__header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #0a0f1c;
+}
+
+.subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--color-muted);
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 0.75rem 1.75rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+}
+
+.btn--ghost {
+    background: #f72d2d;
+    color: white;
+    border-color: var(--color-ghost-border);
+}
+
+.btn--ghost:hover {
+    transform: translateY(-2px);
+    border-color: #f72d2d;
+    background: #e21818;
+}
+
+.card__grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.35rem;
+}
+
+.card__grid article {
+    border: 1px solid rgba(100, 116, 139, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    background: rgba(241, 245, 249, 0.55);
+    backdrop-filter: blur(4px);
+}
+
+.label {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    color: var(--color-label);
+}
+
+.card__grid p {
+    margin: 0.35rem 0 0;
+    font-size: 1.05rem;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+@media (max-width: 640px) {
+    .card__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

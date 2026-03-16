@@ -25,21 +25,6 @@ class User
         return (bool) $stmt->fetchColumn();
     }
 
-    /**
-     * @param array{
-     *     admission_number:string,
-     *     first_name:string,
-     *     middle_name:?string,
-     *     last_name:string,
-     *     gender:string,
-     *     email:string,
-     *     password_hash:string,
-     *     phone_number:string,
-     *     date_of_birth:string,
-     *     course_id:int,
-     *     year_of_study:int
-     * } $data
-     */
     public function createStudent(array $data): int
     {
         $sql = 'INSERT INTO students (
@@ -84,5 +69,35 @@ class User
         ]);
 
         return (int) $this->pdo->lastInsertId();
+    }
+
+    public function findByIdentifier(string $identifier): ?array
+    {
+        $field = filter_var($identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'admission_number';
+        $stmt = $this->pdo->prepare("SELECT * FROM students WHERE {$field} = :identifier LIMIT 1");
+        $stmt->execute(['identifier' => $identifier]);
+        $student = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $student ?: null;
+    }
+
+    public function findById(int $id): ?array
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM students WHERE id = :id LIMIT 1');
+        $stmt->execute(['id' => $id]);
+        $student = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $student ?: null;
+    }
+
+    public function getProfileById(int $id): ?array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT s.*, c.course_name, c.course_code, c.faculty
+            FROM students s
+            LEFT JOIN courses c ON c.id = s.course_id
+            WHERE s.id = :id LIMIT 1'
+        );
+        $stmt->execute(['id' => $id]);
+        $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $profile ?: null;
     }
 }

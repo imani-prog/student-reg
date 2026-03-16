@@ -32,6 +32,9 @@ class AuthHandler
             case 'register':
                 $this->register();
                 break;
+            case 'login':
+                $this->login();
+                break;
             default:
                 $this->redirect('../register.php');
         }
@@ -77,6 +80,42 @@ class AuthHandler
         $this->redirect('../register.php');
     }
 
+    private function login(): void
+    {
+        $input = $this->sanitizeLoginInput($_POST);
+        $errors = [];
+
+        if ($input['identifier'] === '') {
+            $errors[] = 'Enter your admission number or email.';
+        }
+
+        if ($input['password'] === '') {
+            $errors[] = 'Enter your password.';
+        }
+
+        $student = null;
+        if (empty($errors)) {
+            $student = $this->userModel->findByIdentifier($input['identifier']);
+            if (!$student) {
+                $errors[] = 'We could not find an account with those credentials.';
+            } elseif (!password_verify($input['password'], $student['default_password'])) {
+                $errors[] = 'Incorrect password. Please try again.';
+            }
+        }
+
+        if (!empty($errors)) {
+            $_SESSION['login_errors'] = $errors;
+            $_SESSION['login_old'] = ['identifier' => $input['identifier']];
+            $this->redirect('../login.php');
+        }
+
+        $_SESSION['student_id'] = $student['id'];
+        $_SESSION['student_name'] = $student['first_name'];
+        unset($_SESSION['login_errors'], $_SESSION['login_old']);
+
+        $this->redirect('../student/dashboard.php');
+    }
+
     private function sanitizeInput(array $data): array
     {
         return [
@@ -92,6 +131,14 @@ class AuthHandler
             'year_of_study' => trim($data['year_of_study'] ?? ''),
             'password' => $data['password'] ?? '',
             'password_confirmation' => $data['password_confirmation'] ?? '',
+        ];
+    }
+
+    private function sanitizeLoginInput(array $data): array
+    {
+        return [
+            'identifier' => trim($data['identifier'] ?? ''),
+            'password' => $data['password'] ?? '',
         ];
     }
 
