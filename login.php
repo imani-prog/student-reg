@@ -16,9 +16,7 @@ unset($_SESSION['login_errors'], $_SESSION['login_old'], $_SESSION['login_succes
     <title>Student Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/login.css">
 </head>
 
@@ -51,7 +49,8 @@ unset($_SESSION['login_errors'], $_SESSION['login_old'], $_SESSION['login_succes
                 <label class="form-field">
                     <span>Admission number or email</span>
                     <input type="text" name="identifier" required autocomplete="username"
-                        value="<?= htmlspecialchars($old['identifier'] ?? '') ?>" placeholder="MKSU/COM/001/2024 or student@mksu.ac.ke">
+                        value="<?= htmlspecialchars($old['identifier'] ?? '') ?>"
+                        placeholder="j17-1234-2026 or student@mksu.ac.ke">
                 </label>
 
                 <label class="form-field">

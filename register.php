@@ -78,25 +78,24 @@ $maxAcademicYear = $currentYear + 1;
                     <label class="form__field">
                         <span>Admission Number *</span>
                         <input type="text" name="admission_number" maxlength="20" required
-                            value="<?= htmlspecialchars($old['admission_number'] ?? '') ?>"
-                            placeholder="MKSU/COM/001/2024">
+                            value="<?= htmlspecialchars($old['admission_number'] ?? '') ?>" placeholder="j17-1234-2026">
                     </label>
 
                     <label class="form__field">
                         <span>First Name *</span>
-                        <input type="text" name="first_name" maxlength="50" required
+                        <input type="text" name="first_name" maxlength="50" required placeholder="Your First Name"
                             value="<?= htmlspecialchars($old['first_name'] ?? '') ?>">
                     </label>
 
                     <label class="form__field">
                         <span>Middle Name</span>
-                        <input type="text" name="middle_name" maxlength="50"
+                        <input type="text" name="middle_name" maxlength="50" placeholder="Your Middle Name"
                             value="<?= htmlspecialchars($old['middle_name'] ?? '') ?>">
                     </label>
 
                     <label class="form__field">
                         <span>Last Name *</span>
-                        <input type="text" name="last_name" maxlength="50" required
+                        <input type="text" name="last_name" maxlength="50" required placeholder="Your Last Name"
                             value="<?= htmlspecialchars($old['last_name'] ?? '') ?>">
                     </label>
 
