@@ -59,12 +59,13 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.35em;
     font-size: 0.75rem;
-    color: var(--color-primary);
+    color: white;
     margin-bottom: 1rem;
 }
 
 .hero-card h1 {
     font-size: clamp(2rem, 4vw, 3rem);
+    text-align:center;
     margin: 0 0 1rem;
     line-height: 1.2;
 }
