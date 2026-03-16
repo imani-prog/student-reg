@@ -100,7 +100,8 @@ $statCards = [
     <main class="admin-dashboard">
         <section class="panel">
             <header class="panel__header">
-                <div>
+                <div class="panel__header-content">
+                    <img src="../assets/images/logo.png" alt="MKSU Logo">
                     <p class="eyebrow">Portal analytics</p>
                     <h1>Admin overview</h1>
                     <p class="subtitle">Live snapshot of students, courses, and registrations across the portal.</p>
