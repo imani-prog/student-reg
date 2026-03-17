@@ -4,9 +4,9 @@
 class Database
 {
     private $host = 'localhost';
-    private $db = 'mksu_reg';
+    private $db = 'student_reg';
     private $user = 'root';
-    private $pass = 'hunter42';
+    private $pass = 'Timo9380.';
     private $charset = 'utf8mb4';
 
     public $pdo;
