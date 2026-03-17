@@ -1,5 +1,5 @@
 <?php
-// Database configuration for Sheywe Hospital
+// Database configuration for Student Registration System
 
 class Database
 {
